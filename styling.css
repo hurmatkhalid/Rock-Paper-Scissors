@@ -21,8 +21,13 @@ body {
 .play-buttons {
 	display: flex;
 	gap: 20px;
+	align-items: center;
+	justify-content: center;
 }
 button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 100px;
 	width: 100px;
 	font-size: 50px;
@@ -33,6 +38,10 @@ button {
 	font-size: 2rem;
 	text-align: center;
 	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 }
 #result {
 	margin-bottom: 10px;
