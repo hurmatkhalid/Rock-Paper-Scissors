@@ -1,47 +1,18 @@
 const getComputerChoice = () => {
-	const game = ['rock', 'paper', 'scissors'];
+	const game = ['Rock', 'Paper', 'Scissors'];
 	return game[Math.floor(Math.random() * 3)];
 };
 
 const playButtonsDiv = document.querySelectorAll('[play-buttons]');
 
-// const getPlayerChoice = () => {
-// 	playButtonsDiv.forEach((i) => {
-// 		i.addEventListener('click', () => {
-// 			getResult(i.value, computerChoice);
-// 		});
-// 	});
-// };
-const getResult = (playerChoice, computerChoice) => {
-	let score = 0;
-	if (playerChoice == 'rock') {
-		if ((computerChoice = 'paper')) {
-			score = -1;
-		} else if (computerChoice == 'scissors') {
-			score = 1;
-		} else {
-			score = 0;
-		}
-	} else if (playerChoice == 'paper') {
-		if (computerChoice == 'rock') {
-			score = 1;
-		} else if (computerChoice == 'scissors') {
-			score = -1;
-		} else {
-			score = 0;
-		}
-	} else if (playerChoice == 'scissors') {
-		if (computerChoice == 'rock') {
-			score = -1;
-		} else if (computerChoice == 'paper') {
-			score = 1;
-		} else {
-			score = 0;
-		}
-	}
-	return score;
+const onClickRPS = () => {
+	playButtonsDiv.forEach((i) => {
+		i.addEventListener('click', () => {
+			const computerChoice = getComputerChoice();
+			getResult(i.value, computerChoice);
+		});
+	});
 };
-
 const showResult = (score, playerChoice, computerChoice) => {
 	let result = document.getElementById('result');
 	if (score == -1) {
@@ -54,25 +25,41 @@ const showResult = (score, playerChoice, computerChoice) => {
 	let playerScore = document.getElementById('player-score');
 	let hands = document.getElementById('hands');
 	playerScore.innerText = `${Number(playerScore.innerText) + score}`;
-	hands.innerText = `👤${playerChoice} Vs 🤖${computerChoice}`;
+	hands.innerText = `👤 ${playerChoice} Vs 🤖 ${computerChoice}`;
 };
 
-const onClickRPS = (playerChoice) => {
-	const computerChoice = getComputerChoice();
-	const score = getResult(playerChoice.value, computerChoice);
-	showResult(score, playerChoice.value, computerChoice);
+const getResult = (playerChoice, computerChoice) => {
+	let score = 0;
+	if (playerChoice == 'Rock') {
+		if ((computerChoice = 'Paper')) {
+			score = -1;
+		} else if (computerChoice == 'Scissors') {
+			score = 1;
+		} else {
+			score = 0;
+		}
+	} else if (playerChoice == 'Paper') {
+		if (computerChoice == 'Rock') {
+			score = 1;
+		} else if (computerChoice == 'Scissors') {
+			score = -1;
+		} else {
+			score = 0;
+		}
+	} else if (playerChoice == 'Scissors') {
+		if (computerChoice == 'Rock') {
+			score = -1;
+		} else if (computerChoice == 'Paper') {
+			score = 1;
+		} else {
+			score = 0;
+		}
+	}
+
+	showResult(score, playerChoice, computerChoice);
 };
 
-const playGame = () => {
-	let rpsbutton = document.querySelectorAll('[play-button]');
-	rpsbutton.forEach((m) => {
-		m.onclick = () => {
-			onClickRPS(m);
-		};
-	});
-	let endGameButton = document.getElementById('endGameButton');
-	endGameButton.onclick = () => endGame;
-};
+let endGameButton = document.getElementById('endGameButton');
 const endGame = () => {
 	let playerScore = document.getElementById('player-score');
 	let hands = document.getElementById('hands');
@@ -81,4 +68,5 @@ const endGame = () => {
 	hands.innerText = '';
 	result.innerText = '';
 };
-playGame();
+onClickRPS();
+endGameButton.onclick = () => endGame();

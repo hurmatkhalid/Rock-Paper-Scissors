@@ -1,5 +1,6 @@
 * {
-	font-size: 2rem;
+	font-size: 1.4rem;
+	color: beige;
 }
 html,
 body {
@@ -32,4 +33,7 @@ button {
 	font-size: 2rem;
 	text-align: center;
 	margin-top: 20px;
+}
+#result {
+	margin-bottom: 10px;
 }
